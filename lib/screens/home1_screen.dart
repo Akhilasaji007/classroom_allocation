@@ -49,16 +49,19 @@ class HomePage1 extends StatelessWidget {
         toolbarHeight: 100.0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 150.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 120.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
-            mainAxisSpacing: 18.0,
-            childAspectRatio: 7.45,
+            mainAxisSpacing: 30.0,
+            childAspectRatio: 7.15,
           ),
           itemCount: items.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(9.0),
+              ),
               color: items[index]['color'],
               child: Center(
                 child: Text(

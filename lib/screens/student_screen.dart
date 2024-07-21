@@ -18,7 +18,7 @@ class Students extends StatelessWidget {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(20.0),
             child: Text('Students',
                 style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w700)),
           ),
@@ -48,30 +48,34 @@ class Students extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Card(
-                            color: const Color.fromARGB(209, 209, 209, 209),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          studentProvider.students[index].name),
-                                      Text(studentProvider
-                                          .students[index].email),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Text(
-                                    ' Age: ${studentProvider.students[index].age}',
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                right: 16, left: 16, bottom: 8),
+                            child: Card(
+                              color: const Color.fromARGB(209, 209, 209, 209),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(studentProvider
+                                            .students[index].name),
+                                        Text(studentProvider
+                                            .students[index].email),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Text(
+                                      ' Age: ${studentProvider.students[index].age}',
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

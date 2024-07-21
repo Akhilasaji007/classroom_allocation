@@ -17,21 +17,21 @@ class HomePage extends StatelessWidget {
       'iconData': Icons.import_contacts_outlined,
       'color': const Color.fromARGB(220, 226, 235, 244),
       'iconcolor': Colors.blue,
-      'route': '/students',
+      'route': '/subjects',
     },
     {
       'text': 'Class Rooms',
       'iconData': Icons.meeting_room_outlined,
       'color': const Color.fromARGB(252, 243, 219, 219),
       'iconcolor': const Color.fromARGB(235, 231, 111, 102),
-      'route': '/students',
+      'route': '/classrooms',
     },
     {
       'text': 'Registration',
       'iconData': Icons.edit_outlined,
       'color': const Color.fromARGB(255, 246, 235, 219),
       'iconcolor': const Color.fromARGB(255, 228, 183, 93),
-      'route': '/students',
+      'route': '/',
     },
   ];
 
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {
-              Navigator.pushNamed(context, '/student_detail');
+              Navigator.pushNamed(context, '/home1');
             },
           ),
         ],

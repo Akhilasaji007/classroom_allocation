@@ -52,9 +52,11 @@ class _StudentDetailState extends State<StudentDetail> {
                       ),
                     )
                   : studentProvider.error != null
-                      ? Center(child: Text('Error: ${studentProvider.error}'))
+                      ? const Center(
+                          child: Text('No Student details available'))
                       : studentProvider.studentDetails == null
-                          ? const Center(child: Text('Student not found'))
+                          ? const Center(
+                              child: Text('No Student details available'))
                           : Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 180),
@@ -66,17 +68,17 @@ class _StudentDetailState extends State<StudentDetail> {
                                         Color.fromARGB(255, 233, 228, 228),
                                     radius: 50.0,
                                   ),
-                                  const SizedBox(height: 15.0),
+                                  const SizedBox(height: 12.0),
                                   Text(
                                     studentProvider.studentDetails!.name,
                                     style: const TextStyle(fontSize: 18),
                                   ),
-                                  const SizedBox(height: 15.0),
+                                  const SizedBox(height: 12.0),
                                   Text(
                                     'Age : ${studentProvider.studentDetails!.age}',
                                     style: const TextStyle(fontSize: 18),
                                   ),
-                                  const SizedBox(height: 15.0),
+                                  const SizedBox(height: 12.0),
                                   Text(
                                     studentProvider.studentDetails!.email,
                                     style: const TextStyle(fontSize: 18),

@@ -7,12 +7,12 @@ class StudentProvider with ChangeNotifier {
   List<Student> _students = [];
   Student? _studentDetails;
   bool _isLoading = false;
-  String? _error; // Add the error property
+  String? _error;
 
   List<Student> get students => _students;
   Student? get studentDetails => _studentDetails;
   bool get isLoading => _isLoading;
-  String? get error => _error; // Define the error getter
+  String? get error => _error;
 
   Future<void> fetchStudents() async {
     try {
@@ -41,23 +41,4 @@ class StudentProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-
-  // Future<void> fetchStudentDetail(int studentId) async {
-  //   _isLoading = true;
-  //   notifyListeners();
-
-  //   try {
-  //     final response = await _apiService.getDetails('students', studentId);
-  //     // _studentDetails = Student.fromJson(response);
-
-  //     print(response);
-  //     return;
-  //     // notifyListeners();
-  //   } catch (e) {
-  //     throw Exception('Error Fetching Student');
-  //   } finally {
-  //     _isLoading = false;
-  //     notifyListeners();
-  //   }
-  // }
 }

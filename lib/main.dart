@@ -1,7 +1,11 @@
+import 'package:classroom_allocation/providers/classroom_provider.dart';
 import 'package:classroom_allocation/providers/student_provider.dart';
+import 'package:classroom_allocation/providers/subject_provider.dart';
+import 'package:classroom_allocation/screens/classroom_screen.dart';
 import 'package:classroom_allocation/screens/home_screen.dart';
 import 'package:classroom_allocation/screens/home1_screen.dart';
 import 'package:classroom_allocation/screens/student_screen.dart';
+import 'package:classroom_allocation/screens/subject_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +21,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => StudentProvider()),
+          ChangeNotifierProvider(create: (_) => SubjectProvider()),
+          ChangeNotifierProvider(create: (_) => ClassRoomProvider()),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -29,8 +35,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/home1': (context) => HomePage1(),
             '/students': (context) => const Students(),
-            // '/subjects': (context) => Subjects(),
-            // '/classrooms': (context) => Classroom(),
+            '/subjects': (context) => const Subjects(classroomId: null,),
+            '/classrooms': (context) => const ClassRooms(),
           },
           home: HomePage(),
         ));

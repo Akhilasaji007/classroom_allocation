@@ -48,4 +48,20 @@ class ApiService {
       throw Exception('Failed to load data');
     }
   }
+
+  Future<int> updateSubject(int classroomId, int subjectId) async {
+    try {
+      String endpoint = 'classrooms';
+      final response = await http.patch(
+        Uri.parse('$baseUrl$endpoint/$classroomId?api_key=$apiKey'),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'subject=$subjectId',
+      );
+      return response.statusCode;
+    } catch (e) {
+      throw Exception('Failed to Update Subject');
+    }
+  }
 }
