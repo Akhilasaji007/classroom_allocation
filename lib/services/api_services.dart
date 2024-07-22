@@ -36,7 +36,7 @@ class ApiService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        // print(data);
+        print(data);
         return data;
       } else if (response.statusCode == 401) {
         throw Exception(

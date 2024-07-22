@@ -67,7 +67,7 @@ class Subjects extends StatelessWidget {
                                 ),
                               );
 
-                              Navigator.pop(context);
+                              Navigator.pop(context, subjectId);
                             }
                           },
                           child: Card(

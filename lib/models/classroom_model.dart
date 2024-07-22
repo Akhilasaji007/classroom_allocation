@@ -3,7 +3,7 @@ class ClassRoom {
   final String name;
   final String layout;
   final int size;
-  final String? subject;
+  final String subject;
 
   ClassRoom({
     required this.id,
@@ -19,7 +19,7 @@ class ClassRoom {
       name: json['name'],
       layout: json['layout'],
       size: json['size'],
-      subject: json['subject'],
+      subject: json['subject'].toString(),
     );
   }
 }

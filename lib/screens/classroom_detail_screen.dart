@@ -1,4 +1,5 @@
 import 'package:classroom_allocation/providers/classroom_provider.dart';
+import 'package:classroom_allocation/providers/subject_provider.dart';
 import 'package:classroom_allocation/screens/subject_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +15,22 @@ class ClassRoomDetail extends StatefulWidget {
 
 class _ClassRoomDetailState extends State<ClassRoomDetail> {
   late Future<void> _fetchData;
+  Future<String?>? _subjectNameFuture;
 
   @override
   void initState() {
     super.initState();
     _fetchData = Provider.of<ClassRoomProvider>(context, listen: false)
         .fetchClassRoomDetail(widget.classroomId);
+  }
+
+  Future<String?> _fetchSubjectName(int subjectId) async {
+    await Provider.of<SubjectProvider>(context, listen: false)
+        .fetchSubjectDetail(subjectId)
+        .catchError((e) {});
+    final subjectProvider =
+        Provider.of<SubjectProvider>(context, listen: false);
+    return subjectProvider.subjectDetails?.name;
   }
 
   @override
@@ -42,7 +53,13 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
           } else if (classroomProvider.classroomDetails == null) {
             return const Center(child: Text('No classroom details available'));
           } else {
-            final subject = classroomProvider.classroomDetails?.subject ?? '';
+            final subjectId = classroomProvider.classroomDetails?.subject ?? '';
+            if (subjectId.isNotEmpty && _subjectNameFuture == null) {
+              final subId = int.tryParse(subjectId);
+              if (subId != null) {
+                _subjectNameFuture = _fetchSubjectName(subId);
+              }
+            }
 
             return Column(
               children: [
@@ -66,43 +83,56 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                         horizontal: 20.0,
                         vertical: 8.0,
                       ),
-                      child: Row(
-                        children: [
-                          subject.isEmpty
-                              ? const Text("Add Subject")
-                              : Column(
-                                  children: [
-                                    Text(subject),
-                                    Text(classroomProvider
-                                        .classroomDetails!.name),
-                                  ],
-                                ),
-                          Expanded(child: Container()),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Subjects(
-                                    classroomId:
-                                        classroomProvider.classroomDetails!.id,
+                      child: FutureBuilder<String?>(
+                        future: _subjectNameFuture,
+                        builder: (context, snapshot) {
+                          final subjectName = snapshot.data ?? '';
+                          return Row(
+                            children: [
+                              (subjectName.isEmpty)
+                                  ? const Text("Add Subject")
+                                  : Column(
+                                      children: [
+                                        Text(subjectName),
+                                        Text(classroomProvider
+                                            .classroomDetails!.name),
+                                      ],
+                                    ),
+                              Expanded(child: Container()),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  final result = await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Subjects(
+                                        classroomId: classroomProvider
+                                            .classroomDetails!.id,
+                                      ),
+                                    ),
+                                  );
+                                  if (result != null && result is int) {
+                                    setState(() {
+                                      _subjectNameFuture =
+                                          _fetchSubjectName(result);
+                                    });
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(161, 128, 169, 136),
+                                  foregroundColor:
+                                      const Color.fromARGB(207, 52, 152, 49),
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
                                 ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(161, 128, 169, 136),
-                              foregroundColor:
-                                  const Color.fromARGB(207, 52, 152, 49),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                child: Text(
+                                    (subjectName.isEmpty) ? "Add " : "Change "),
                               ),
-                            ),
-                            child: Text(subject.isEmpty ? "Add " : "Change "),
-                          ),
-                        ],
+                            ],
+                          );
+                        },
                       ),
                     ),
                   ),
