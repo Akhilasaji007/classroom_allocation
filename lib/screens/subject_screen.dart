@@ -62,8 +62,19 @@ class Subjects extends StatelessWidget {
                               _handleUpdate(context, classroomId!, subjectId);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(classRoomProvider.isSuccess),
-                                  duration: const Duration(seconds: 2),
+                                  backgroundColor:
+                                      Color.fromARGB(160, 146, 191, 155),
+                                  content: Center(
+                                    child: Text(
+                                      classRoomProvider.isSuccess,
+                                      style: const TextStyle(
+                                        color: Color.fromARGB(255, 52, 120, 87),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ),
+                                  duration: const Duration(seconds: 60),
                                 ),
                               );
 
