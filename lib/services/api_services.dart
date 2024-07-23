@@ -15,11 +15,8 @@ class ApiService {
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         return data;
-      } else if (response.statusCode == 401) {
-        throw Exception(
-            'Unauthorized: Invalid API Key or insufficient permissions.');
       } else {
-        throw Exception('Failed to load data: ${response.reasonPhrase}');
+        throw Exception('Failed to load data');
       }
     } catch (e) {
       throw Exception('Failed to load data');
@@ -36,13 +33,9 @@ class ApiService {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print(data);
         return data;
-      } else if (response.statusCode == 401) {
-        throw Exception(
-            'Unauthorized: Invalid API Key or insufficient permissions.');
       } else {
-        throw Exception('Failed to load data: ${response.reasonPhrase}');
+        throw Exception('Failed to load data');
       }
     } catch (e) {
       throw Exception('Failed to load data');
@@ -62,6 +55,44 @@ class ApiService {
       return response.statusCode;
     } catch (e) {
       throw Exception('Failed to Update Subject');
+    }
+  }
+
+  Future<dynamic> registerStudent(int studentId, int subjectId) async {
+    try {
+      String endpoint = 'registration';
+      final response = await http
+          .post(Uri.parse('$baseUrl$endpoint/?api_key=$apiKey'), headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }, body: {
+        'student': studentId.toString(),
+        'subject': subjectId.toString(),
+      });
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+
+        return data;
+      } else {
+        throw Exception('Failed to Update Subject');
+      }
+    } catch (e) {
+      throw Exception('Failed to Update Subject');
+    }
+  }
+
+  Future<int> deleteRegistration(int registerId) async {
+    try {
+      String endpoint = 'registration';
+      final response = await http.delete(
+        Uri.parse('$baseUrl$endpoint/$registerId?api_key=$apiKey'),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      );
+      return response.statusCode;
+    } catch (e) {
+      throw Exception('Failed to Delete');
     }
   }
 }

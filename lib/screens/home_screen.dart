@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
       'iconData': Icons.edit_outlined,
       'color': const Color.fromARGB(255, 246, 235, 219),
       'iconcolor': const Color.fromARGB(255, 228, 183, 93),
-      'route': '/',
+      'route': '/registration',
     },
   ];
 

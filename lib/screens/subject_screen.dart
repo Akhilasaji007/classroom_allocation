@@ -6,9 +6,12 @@ import 'package:provider/provider.dart';
 
 class Subjects extends StatelessWidget {
   final int? classroomId;
+  final bool register;
+
   const Subjects({
     super.key,
     required this.classroomId,
+    required this.register,
   });
 
   @override
@@ -45,17 +48,7 @@ class Subjects extends StatelessWidget {
                       itemBuilder: (ctx, index) {
                         return GestureDetector(
                           onTap: () {
-                            if (classroomId == null) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SubjectDetail(
-                                    subjectId:
-                                        subjectProvider.subjects[index].id,
-                                  ),
-                                ),
-                              );
-                            } else {
+                            if (classroomId != null) {
                               final int subjectId =
                                   subjectProvider.subjects[index].id;
 
@@ -63,7 +56,7 @@ class Subjects extends StatelessWidget {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   backgroundColor:
-                                      Color.fromARGB(160, 146, 191, 155),
+                                      const Color.fromARGB(160, 146, 191, 155),
                                   content: Center(
                                     child: Text(
                                       classRoomProvider.isSuccess,
@@ -79,36 +72,63 @@ class Subjects extends StatelessWidget {
                               );
 
                               Navigator.pop(context, subjectId);
+                            } else if (register == true) {
+                              Navigator.pop(
+                                context,
+                                {
+                                  'subId': subjectProvider.subjects[index].id,
+                                  'subName':
+                                      subjectProvider.subjects[index].name,
+                                },
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SubjectDetail(
+                                    subjectId:
+                                        subjectProvider.subjects[index].id,
+                                  ),
+                                ),
+                              );
                             }
                           },
-                          child: Card(
-                            color: const Color.fromARGB(209, 209, 209, 209),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          subjectProvider.subjects[index].name),
-                                      Text(subjectProvider
-                                          .subjects[index].teacher),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Column(
-                                    children: [
-                                      Text(
-                                          '${subjectProvider.subjects[index].credits}'),
-                                      const Text("Credit"),
-                                    ],
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                right: 16, left: 16, bottom: 8),
+                            child: Card(
+                              color: const Color.fromARGB(209, 209, 209, 209),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          subjectProvider.subjects[index].name,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(subjectProvider
+                                            .subjects[index].teacher),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Column(
+                                      children: [
+                                        Text(
+                                            '${subjectProvider.subjects[index].credits}'),
+                                        const Text("Credit"),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

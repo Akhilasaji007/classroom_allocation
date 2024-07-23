@@ -49,34 +49,43 @@ class ClassRooms extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Card(
-                            color: const Color.fromARGB(209, 209, 209, 209),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(classroomProvider
-                                          .classrooms[index].name),
-                                      Text(classroomProvider
-                                          .classrooms[index].layout),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Column(
-                                    children: [
-                                      Text(
-                                          '${classroomProvider.classrooms[index].size}'),
-                                      const Text("Seats"),
-                                    ],
-                                  ),
-                                ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                right: 16, left: 16, bottom: 8),
+                            child: Card(
+                              color: const Color.fromARGB(209, 209, 209, 209),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          classroomProvider
+                                              .classrooms[index].name,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(classroomProvider
+                                            .classrooms[index].layout),
+                                      ],
+                                    ),
+                                    Expanded(child: Container()),
+                                    Column(
+                                      children: [
+                                        Text(
+                                            '${classroomProvider.classrooms[index].size}'),
+                                        const Text("Seats"),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

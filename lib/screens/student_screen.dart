@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Students extends StatelessWidget {
-  const Students({super.key});
+  final bool register;
+  const Students({super.key, required this.register});
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +40,26 @@ class Students extends StatelessWidget {
                       itemBuilder: (ctx, index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => StudentDetail(
-                                  studentId: studentProvider.students[index].id,
+                            if (register == true) {
+                              Navigator.pop(
+                                context,
+                                {
+                                  'studId': studentProvider.students[index].id,
+                                  'studName':
+                                      studentProvider.students[index].name,
+                                },
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => StudentDetail(
+                                    studentId:
+                                        studentProvider.students[index].id,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            }
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
@@ -54,7 +67,7 @@ class Students extends StatelessWidget {
                             child: Card(
                               color: const Color.fromARGB(209, 209, 209, 209),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(9.0),
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
@@ -64,8 +77,12 @@ class Students extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(studentProvider
-                                            .students[index].name),
+                                        Text(
+                                          studentProvider.students[index].name,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                         Text(studentProvider
                                             .students[index].email),
                                       ],

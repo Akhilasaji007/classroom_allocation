@@ -90,12 +90,29 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                           return Row(
                             children: [
                               (subjectName.isEmpty)
-                                  ? const Text("Add Subject")
+                                  ? const Text(
+                                      "Add Subject",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400),
+                                    )
                                   : Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(subjectName),
-                                        Text(classroomProvider
-                                            .classroomDetails!.name),
+                                        Text(
+                                          subjectName,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          classroomProvider
+                                              .classroomDetails!.name,
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ],
                                     ),
                               Expanded(child: Container()),
@@ -107,6 +124,7 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                                       builder: (context) => Subjects(
                                         classroomId: classroomProvider
                                             .classroomDetails!.id,
+                                        register: false,
                                       ),
                                     ),
                                   );
@@ -121,14 +139,18 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                                   backgroundColor:
                                       const Color.fromARGB(161, 128, 169, 136),
                                   foregroundColor:
-                                      const Color.fromARGB(207, 52, 152, 49),
+                                      const Color.fromARGB(207, 40, 112, 38),
                                   elevation: 0,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                 ),
                                 child: Text(
-                                    (subjectName.isEmpty) ? "Add " : "Change "),
+                                  (subjectName.isEmpty) ? "Add " : "Change ",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ],
                           );

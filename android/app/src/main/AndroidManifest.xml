@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.classroom_allocation">
     <application
         android:label="classroom_allocation"
         android:name="${applicationName}"
