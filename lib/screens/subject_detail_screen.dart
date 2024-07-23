@@ -64,24 +64,32 @@ class _SubjectDetailState extends State<SubjectDetail> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/images/subject.png'),
                                     backgroundColor:
                                         Color.fromARGB(255, 233, 228, 228),
-                                    radius: 50.0,
+                                    radius: 68.0,
                                   ),
                                   const SizedBox(height: 12.0),
                                   Text(
                                     subjectProvider.subjectDetails!.name,
-                                    style: const TextStyle(fontSize: 18),
+                                    style: const TextStyle(
+                                        fontSize: 22.47,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   const SizedBox(height: 12.0),
                                   Text(
                                     subjectProvider.subjectDetails!.teacher,
-                                    style: const TextStyle(fontSize: 18),
+                                    style: const TextStyle(
+                                        fontSize: 22.47,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                   const SizedBox(height: 12.0),
                                   Text(
                                     'Credit : ${subjectProvider.subjectDetails!.credits}',
-                                    style: const TextStyle(fontSize: 18),
+                                    style: const TextStyle(
+                                        fontSize: 17.18,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ],
                               ),

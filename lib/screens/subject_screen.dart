@@ -16,7 +16,6 @@ class Subjects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final classRoomProvider = Provider.of<ClassRoomProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -54,20 +53,20 @@ class Subjects extends StatelessWidget {
 
                               _handleUpdate(context, classroomId!, subjectId);
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   backgroundColor:
-                                      const Color.fromARGB(160, 146, 191, 155),
+                                      Color.fromARGB(227, 130, 172, 138),
                                   content: Center(
                                     child: Text(
-                                      classRoomProvider.isSuccess,
-                                      style: const TextStyle(
-                                        color: Color.fromARGB(255, 52, 120, 87),
-                                        fontWeight: FontWeight.bold,
+                                      "Subject Updated",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 79, 139, 93),
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 20.0,
                                       ),
                                     ),
                                   ),
-                                  duration: const Duration(seconds: 60),
+                                  duration: Duration(seconds: 2),
                                 ),
                               );
 
@@ -112,19 +111,33 @@ class Subjects extends StatelessWidget {
                                         Text(
                                           subjectProvider.subjects[index].name,
                                           style: const TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 17,
                                               fontWeight: FontWeight.w400),
                                         ),
-                                        Text(subjectProvider
-                                            .subjects[index].teacher),
+                                        Text(
+                                          subjectProvider
+                                              .subjects[index].teacher,
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ],
                                     ),
                                     Expanded(child: Container()),
                                     Column(
                                       children: [
                                         Text(
-                                            '${subjectProvider.subjects[index].credits}'),
-                                        const Text("Credit"),
+                                          '${subjectProvider.subjects[index].credits}',
+                                          style: const TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        const Text(
+                                          "Credit",
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ],
                                     ),
                                   ],

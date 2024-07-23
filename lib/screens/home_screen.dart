@@ -7,30 +7,26 @@ class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
     {
       'text': 'Students',
-      'iconData': Icons.school_outlined,
+      'iconData': 'img1.png',
       'color': const Color.fromARGB(123, 201, 244, 217),
-      'iconcolor': Colors.green,
       'route': '/students',
     },
     {
       'text': 'Subjetcs',
-      'iconData': Icons.import_contacts_outlined,
+      'iconData': 'img2.png',
       'color': const Color.fromARGB(220, 226, 235, 244),
-      'iconcolor': Colors.blue,
       'route': '/subjects',
     },
     {
       'text': 'Class Rooms',
-      'iconData': Icons.meeting_room_outlined,
-      'color': const Color.fromARGB(252, 243, 219, 219),
-      'iconcolor': const Color.fromARGB(235, 231, 111, 102),
+      'iconData': 'img3.png',
+      'color': const Color.fromARGB(250, 248, 222, 222),
       'route': '/classrooms',
     },
     {
       'text': 'Registration',
-      'iconData': Icons.edit_outlined,
-      'color': const Color.fromARGB(255, 246, 235, 219),
-      'iconcolor': const Color.fromARGB(255, 228, 183, 93),
+      'iconData': 'img4.png',
+      'color': const Color.fromARGB(255, 255, 244, 211),
       'route': '/registration',
     },
   ];
@@ -54,7 +50,11 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const Icon(
+              Icons.menu,
+              size: 32,
+              color: Colors.black,
+            ),
             onPressed: () {
               Navigator.pushNamed(context, '/home1');
             },
@@ -83,11 +83,7 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 110.0),
                   child: Column(
                     children: [
-                      Icon(
-                        items[index]['iconData'],
-                        size: 48.0,
-                        color: items[index]['iconcolor'],
-                      ),
+                      Image.asset('assets/images/${items[index]['iconData']}'),
                       const SizedBox(height: 10),
                       Text(
                         items[index]['text'],

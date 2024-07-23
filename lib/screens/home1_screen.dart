@@ -15,11 +15,11 @@ class HomePage1 extends StatelessWidget {
     },
     {
       'text': 'Class Rooms',
-      'color': const Color.fromARGB(252, 243, 219, 219),
+      'color': const Color.fromARGB(250, 248, 222, 222),
     },
     {
       'text': 'Registration',
-      'color': const Color.fromARGB(255, 246, 235, 219),
+      'color': const Color.fromARGB(255, 255, 244, 211),
     },
   ];
 

@@ -94,7 +94,7 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                                       "Add Subject",
                                       style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight: FontWeight.w400),
+                                          fontWeight: FontWeight.w500),
                                     )
                                   : Column(
                                       crossAxisAlignment:
@@ -103,7 +103,7 @@ class _ClassRoomDetailState extends State<ClassRoomDetail> {
                                         Text(
                                           subjectName,
                                           style: const TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 17,
                                               fontWeight: FontWeight.w400),
                                         ),
                                         Text(

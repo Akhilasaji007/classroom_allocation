@@ -8,6 +8,8 @@ class Registartions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final registarProvider =
+        Provider.of<RegistrationProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -32,6 +34,29 @@ class Registartions extends StatelessWidget {
                       child: CircularProgressIndicator(
                     color: Color.fromARGB(255, 214, 214, 211),
                   ));
+                } else if (registarProvider.registartions == null ||
+                    registarProvider.registartions.isEmpty) {
+                  return Column(
+                    children: [
+                      Expanded(child: Container()),
+                      const Text(
+                        "No Data",
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      const Text(
+                        "Registration Deleted",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  );
                 } else {
                   return Consumer<RegistrationProvider>(
                     builder: (ctx, registartionProvider, _) => ListView.builder(
@@ -86,24 +111,6 @@ class Registartions extends StatelessWidget {
               },
             ),
           ),
-          // Expanded(child: Container()),
-          // const Text(
-          //   "No Data",
-          //   style: TextStyle(
-          //     fontSize: 17.0,
-          //     fontWeight: FontWeight.w400,
-          //     color: Colors.green,
-          //   ),
-          // ),
-          // Expanded(child: Container()),
-          // const Text(
-          //   "Registration Deleted",
-          //   style: TextStyle(
-          //     fontSize: 20.0,
-          //     fontWeight: FontWeight.w600,
-          //     color: Colors.green,
-          //   ),
-          // ),
           const SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
@@ -122,7 +129,7 @@ class Registartions extends StatelessWidget {
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),
           ),
-          const SizedBox(height: 50),
+          const SizedBox(height: 60),
         ],
       ),
     );

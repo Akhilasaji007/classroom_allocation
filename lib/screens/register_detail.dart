@@ -178,7 +178,16 @@ class _RegistrationDetailState extends State<RegistrationDetail> {
                 Navigator.pushNamed(context, '/registration');
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text('Registration deleted'),
+                    backgroundColor: Color.fromARGB(227, 130, 172, 138),
+                    content: Text(
+                      'Registration deleted',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 79, 139, 93),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20.0,
+                      ),
+                    ),
+                    duration: Duration(seconds: 2),
                   ),
                 );
               }

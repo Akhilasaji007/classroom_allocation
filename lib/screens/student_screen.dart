@@ -80,16 +80,23 @@ class Students extends StatelessWidget {
                                         Text(
                                           studentProvider.students[index].name,
                                           style: const TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 17,
                                               fontWeight: FontWeight.w400),
                                         ),
-                                        Text(studentProvider
-                                            .students[index].email),
+                                        Text(
+                                          studentProvider.students[index].email,
+                                          style: const TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w400),
+                                        ),
                                       ],
                                     ),
                                     Expanded(child: Container()),
                                     Text(
                                       ' Age: ${studentProvider.students[index].age}',
+                                      style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400),
                                     ),
                                   ],
                                 ),
